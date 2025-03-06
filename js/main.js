@@ -1,15 +1,91 @@
-// Добавьте этот код к существующему JavaScript файлу
+// Инициализация AOS
+AOS.init({
+    duration: 1000,
+    once: true,
+    offset: 100
+});
 
-// Интерактивная карта сознания
-document.querySelectorAll('.node').forEach(node => {
+// Кастомный курсор
+const cursor = document.querySelector('.cursor');
+const cursorFollower = document.querySelector('.cursor-follower');
+
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    
+    setTimeout(() => {
+        cursorFollower.style.left = e.clientX + 'px';
+        cursorFollower.style.top = e.clientY + 'px';
+    }, 100);
+});
+
+// Эффект наведения на ссылки
+document.querySelectorAll('a, button, .character-card, .lab-element, .quote-card').forEach(element => {
+    element.addEventListener('mouseenter', () => {
+        cursorFollower.style.transform = 'scale(1.5)';
+        cursor.style.transform = 'scale(0.5)';
+    });
+
+    element.addEventListener('mouseleave', () => {
+        cursorFollower.style.transform = 'scale(1)';
+        cursor.style.transform = 'scale(1)';
+    });
+});
+
+// Переключатель темы
+const themeToggle = document.querySelector('.theme-toggle');
+themeToggle.addEventListener('click', () => {
+    document.body.dataset.theme = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', document.body.dataset.theme);
+});
+
+// Загрузка сохраненной темы
+document.body.dataset.theme = localStorage.getItem('theme') || 'light';
+
+// Параллакс эффект для фона героя
+document.addEventListener('mousemove', (e) => {
+    const heroBackground = document.querySelector('.hero-background');
+    const moveX = (e.clientX - window.innerWidth / 2) * 0.05;
+    const moveY = (e.clientY - window.innerHeight / 2) * 0.05;
+    
+    heroBackground.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.1)`;
+});
+
+// Плавная прокрутка
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Анимация карты сознания
+const nodes = document.querySelectorAll('.node, .sub-node');
+nodes.forEach(node => {
     node.addEventListener('mouseenter', () => {
-        node.style.transform = 'scale(1.1)';
-        node.style.boxShadow = '0 0 20px var(--accent-color)';
+        nodes.forEach(n => {
+            if (n !== node) {
+                n.style.opacity = '0.5';
+            }
+        });
     });
 
     node.addEventListener('mouseleave', () => {
-        node.style.transform = 'scale(1)';
-        node.style.boxShadow = 'none';
+        nodes.forEach(n => {
+            n.style.opacity = '1';
+        });
+    });
+});
+
+// Эффект параллакса для секций
+window.addEventListener('scroll', () => {
+    const parallaxElements = document.querySelectorAll('.parallax');
+    parallaxElements.forEach(element => {
+        const speed = element.dataset.speed || 0.5;
+        const yPos = -(window.pageYOffset * speed);
+        element.style.transform = `translateY(${yPos}px)`;
     });
 });
 
@@ -28,7 +104,7 @@ timelineItems.forEach(item => {
     timelineObserver.observe(item);
 });
 
-// Лабораторные элементы
+// Анимация лабораторных элементов
 document.querySelectorAll('.lab-element').forEach(element => {
     element.addEventListener('mouseenter', () => {
         element.querySelector('.hologram-effect').style.opacity = '1';
@@ -57,11 +133,17 @@ document.querySelectorAll('.quote-card').forEach(card => {
     });
 });
 
-// Добавление интерактивных элементов при скролле
+// Добавление эффекта размытия при скролле
 window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    document.querySelectorAll('.parallax').forEach(element => {
-        const speed = element.dataset.speed;
-        element.style.transform = `translateY(${scrolled * speed}px)`;
-    });
+    const header = document.querySelector('.header');
+    if (window.scrollY > 50) {
+        header.style.backdropFilter = 'blur(10px)';
+    } else {
+        header.style.backdropFilter = 'blur(5px)';
+    }
+});
+
+// Прелоадер
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
 });

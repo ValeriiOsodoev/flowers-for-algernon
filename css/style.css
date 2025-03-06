@@ -1,4 +1,216 @@
-/* Добавьте эти стили к существующему CSS файлу */
+:root {
+    --primary-color: #2d3436;
+    --secondary-color: #0984e3;
+    --accent-color: #00cec9;
+    --text-color: #2d3436;
+    --background-color: #f5f6fa;
+    --glass-background: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    --neon-glow: 0 0 10px var(--accent-color);
+}
+
+[data-theme="dark"] {
+    --primary-color: #dfe6e9;
+    --text-color: #f5f6fa;
+    --background-color: #2d3436;
+    --glass-background: rgba(0, 0, 0, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cabinet Grotesk', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    transition: background-color 0.3s ease;
+    cursor: none;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Курсор */
+.cursor {
+    width: 10px;
+    height: 10px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.2s ease;
+}
+
+.cursor-follower {
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.3s ease;
+}
+
+/* Стеклянный эффект */
+.glass-effect {
+    background: var(--glass-background);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--card-shadow);
+}
+
+/* Навигация */
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: 1rem 0;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    text-shadow: var(--neon-glow);
+}
+
+.nav-list {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: none;
+    padding: 0.5rem;
+    color: var(--primary-color);
+}
+
+/* Герой секция */
+.hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=2000') center/cover;
+    filter: brightness(0.3);
+    z-index: -1;
+    transform: scale(1.1);
+}
+
+.hero-content {
+    text-align: center;
+    color: white;
+    z-index: 1;
+}
+
+.glitch {
+    font-size: 5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    position: relative;
+    text-shadow: 0.05em 0 0 var(--accent-color),
+                 -0.05em -0.025em 0 var(--secondary-color);
+    animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+    0% {
+        text-shadow: 0.05em 0 0 var(--accent-color),
+                     -0.05em -0.025em 0 var(--secondary-color);
+    }
+    25% {
+        text-shadow: -0.05em -0.025em 0 var(--accent-color),
+                     0.025em 0.025em 0 var(--secondary-color);
+    }
+    50% {
+        text-shadow: 0.025em 0.05em 0 var(--accent-color),
+                     0.05em 0 0 var(--secondary-color);
+    }
+    75% {
+        text-shadow: -0.05em -0.05em 0 var(--accent-color),
+                     -0.025em -0.025em 0 var(--secondary-color);
+    }
+    100% {
+        text-shadow: -0.025em 0 0 var(--accent-color),
+                     0.025em -0.025em 0 var(--secondary-color);
+    }
+}
+
+.author-info {
+    margin: 2rem 0;
+}
+
+.author-label {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent-color);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
 
 /* Временная линия */
 .timeline-section {
@@ -55,11 +267,17 @@
 }
 
 /* Карта сознания */
+.mind-map-section {
+    padding: 100px 0;
+    background: linear-gradient(-45deg, var(--background-color), rgba(9, 132, 227, 0.1));
+}
+
 .mind-map-container {
     position: relative;
     height: 600px;
     margin: 50px auto;
     padding: 20px;
+    border-radius: 20px;
 }
 
 .node {
@@ -80,32 +298,59 @@
     color: white;
 }
 
-.pulse-effect {
+.node-group {
     position: absolute;
-    top: 50%;
+}
+
+.intelligence {
+    top: 20%;
+    left: 20%;
+}
+
+.emotions {
+    top: 20%;
+    right: 20%;
+}
+
+.memory {
+    bottom: 20%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    border-radius: 30px;
-    border: 2px solid var(--accent-color);
-    animation: pulse 2s infinite;
+    transform: translateX(-50%);
+}
+
+.sub-node {
+    margin: 10px 0;
+    padding: 10px 20px;
+    background: var(--glass-background);
+    border-radius: 20px;
+    transition: all 0.3s ease;
 }
 
 /* Лаборатория */
+.lab-section {
+    padding: 100px 0;
+    background: linear-gradient(45deg, var(--background-color), rgba(0, 206, 201, 0.1));
+}
+
 .lab-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     padding: 40px;
+    border-radius: 20px;
 }
 
 .lab-element {
     position: relative;
     padding: 30px;
     text-align: center;
+    border-radius: 15px;
     cursor: pointer;
     transition: transform 0.3s ease;
+}
+
+.lab-element:hover {
+    transform: translateY(-10px);
 }
 
 .hologram-effect {
@@ -117,17 +362,154 @@
     background: linear-gradient(45deg, transparent, rgba(0, 206, 201, 0.1));
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     animation: hologram 3s infinite linear;
+    border-radius: 15px;
+}
+
+.lab-icon {
+    font-size: 3rem;
+    margin: 1rem 0;
+}
+
+/* Цитаты */
+.quotes-section {
+    padding: 100px 0;
+    background: linear-gradient(-45deg, var(--background-color), rgba(9, 132, 227, 0.1));
+}
+
+.quotes-3d-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.quote-card {
+    position: relative;
+    height: 300px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.quote-front,
+.quote-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    backface-visibility: hidden;
+    transition: transform 0.6s ease;
+    border-radius: 15px;
+}
+
+.quote-front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.2rem;
+    background: var(--glass-background);
+}
+
+.quote-back {
+    background: var(--accent-color);
+    color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.quote-card:hover .quote-front {
+    transform: rotateY(180deg);
+}
+
+.quote-card:hover .quote-back {
+    transform: rotateY(360deg);
+}
+
+/* Футер */
+.footer {
+    padding: 4rem 0 2rem;
+    margin-top: 4rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: var(--accent-color);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--glass-border);
 }
 
 /* Анимации */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
 @keyframes pulse {
     0% {
-        transform: translate(-50%, -50%) scale(1);
+        transform: scale(1);
         opacity: 1;
     }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.5;
+    }
     100% {
-        transform: translate(-50%, -50%) scale(1.5);
-        opacity: 0;
+        transform: scale(1);
+        opacity: 1;
     }
 }
 
@@ -143,17 +525,39 @@
     }
 }
 
-@keyframes timelineFloat {
-    0%, 100% {
-        transform: translateY(0);
+/* Медиа запросы */
+@media (max-width: 1200px) {
+    .glitch {
+        font-size: 4rem;
     }
-    50% {
-        transform: translateY(-10px);
+
+    .lab-container {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* Медиа запросы для адаптивности */
 @media (max-width: 768px) {
+    .glitch {
+        font-size: 3rem;
+    }
+
+    .nav-list {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--glass-background);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .nav-list.active {
+        display: flex;
+    }
+
     .timeline::after {
         left: 31px;
     }
@@ -170,4 +574,280 @@
     .lab-container {
         grid-template-columns: 1fr;
     }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .mind-map-container {
+        height: auto;
+        padding: 40px;
+    }
+
+    .node-group {
+        position: relative;
+        margin: 20px 0;
+    }
+
+    .intelligence,
+    .emotions,
+    .memory {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .glitch {
+        font-size: 2rem;
+    }
+
+    .hero-content {
+        padding: 0 1rem;
+    }
+
+    .quote-card {
+        height: 250px;
+    }
+}
+
+/* Дополнительные анимации и эффекты */
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: var(--accent-color);
+}
+
+/* Эффекты при наведении */
+.character-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.lab-element:hover .hologram-effect {
+    opacity: 0.8;
+}
+
+.node:hover,
+.sub-node:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--accent-color);
+}
+
+/* Скролл индикатор */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.mouse {
+    width: 30px;
+    height: 50px;
+    border: 2px solid white;
+    border-radius: 15px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.mouse::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 8px;
+    background: white;
+    border-radius: 2px;
+    animation: scroll 1.5s infinite;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, 15px);
+        opacity: 0;
+    }
+}
+
+/* Дополнительные стили для интерактивности */
+.character-image {
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.character-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.character-card:hover .character-image img {
+    transform: scale(1.1);
+}
+
+.character-traits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.character-traits span {
+    padding: 0.25rem 0.75rem;
+    background: var(--accent-color);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+/* Эффекты для цитат */
+.quote-decoration {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 4rem;
+    color: var(--accent-color);
+    opacity: 0.1;
+}
+
+/* Стили для кнопки переключения темы */
+.theme-toggle {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background: var(--glass-background);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+    cursor: none;
+}
+
+.sun, .moon {
+    font-size: 20px;
+}
+
+[data-theme="dark"] .sun {
+    opacity: 0.5;
+}
+
+[data-theme="light"] .moon {
+    opacity: 0.5;
+}
+
+/* Дополнительные стили для лаборатории */
+.lab-element::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
+    z-index: -1;
+    border-radius: 17px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lab-element:hover::before {
+    opacity: 1;
+}
+
+/* Стили для временной линии */
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.timeline-item:nth-child(odd) .timeline-content::before {
+    right: -60px;
+}
+
+.timeline-item:nth-child(even) .timeline-content::before {
+    left: -60px;
+}
+
+/* Дополнительные стили для футера */
+.footer-logo {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.footer-text {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+/* Стили для прокрутки */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
 }

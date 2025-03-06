@@ -1,13 +1,81 @@
 <!DOCTYPE html>
 <html lang="ru">
-<!-- ... предыдущий head остается без изменений ... -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цветы для Элджернона | Интерактивное путешествие</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,500,700&display=swap" rel="stylesheet">
+</head>
 <body>
-    <!-- ... предыдущий header остается без изменений ... -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <header class="header glass-effect">
+        <nav class="nav">
+            <div class="logo">FFA</div>
+            <ul class="nav-list">
+                <li><a href="#home" class="nav-link">Главная</a></li>
+                <li><a href="#about" class="nav-link">О книге</a></li>
+                <li><a href="#timeline" class="nav-link">Хронология</a></li>
+                <li><a href="#characters" class="nav-link">Персонажи</a></li>
+                <li><a href="#mind-map" class="nav-link">Карта сознания</a></li>
+                <li><a href="#lab" class="nav-link">Лаборатория</a></li>
+                <li><a href="#quotes" class="nav-link">Цитаты</a></li>
+            </ul>
+            <button class="theme-toggle">
+                <span class="sun">☀️</span>
+                <span class="moon">🌙</span>
+            </button>
+        </nav>
+    </header>
 
     <main>
-        <!-- ... предыдущая hero секция остается без изменений ... -->
+        <section id="home" class="hero">
+            <div class="hero-content" data-aos="fade-up">
+                <h1 class="glitch" data-text="Цветы для Элджернона">Цветы для Элджернона</h1>
+                <div class="author-info">
+                    <span class="author-label">Автор</span>
+                    <h2>Дэниел Киз</h2>
+                </div>
+                <p class="subtitle">История интеллекта, эмоций и человечности</p>
+                <div class="scroll-indicator">
+                    <span>Исследовать</span>
+                    <div class="mouse"></div>
+                </div>
+            </div>
+            <div class="hero-background parallax" data-speed="-0.5"></div>
+        </section>
 
-        <!-- Новая секция: Интерактивная временная линия -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">О книге</h2>
+                <div class="book-info">
+                    <div class="book-image" data-aos="fade-right">
+                        <img src="https://images.unsplash.com/photo-1603162525937-96b7f291a0f5?q=80&w=2000" alt="Книга" class="floating">
+                    </div>
+                    <div class="book-description" data-aos="fade-left">
+                        <p>Научно-фантастический роман, исследующий границы человеческого интеллекта и эмоционального развития. История Чарли Гордона, умственно отсталого молодого человека, который становится первым человеческим объектом эксперимента по улучшению интеллекта.</p>
+                        <div class="book-stats">
+                            <div class="stat">
+                                <span class="number">1966</span>
+                                <span class="label">Год издания</span>
+                            </div>
+                            <div class="stat">
+                                <span class="number">216</span>
+                                <span class="label">Страниц</span>
+                            </div>
+                            <div class="stat">
+                                <span class="number">40+</span>
+                                <span class="label">Языков перевода</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="timeline" class="timeline-section">
             <div class="container">
                 <h2 class="section-title" data-aos="fade-up">Путешествие во времени</h2>
@@ -48,7 +116,50 @@
             </div>
         </section>
 
-        <!-- Новая секция: Интерактивная карта сознания -->
+        <section id="characters" class="characters">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Ключевые персонажи</h2>
+                <div class="character-grid">
+                    <div class="character-card glass-effect" data-aos="zoom-in">
+                        <div class="character-image">
+                            <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=1000" alt="Чарли Гордон">
+                        </div>
+                        <h3>Чарли Гордон</h3>
+                        <p>Главный герой, проходящий через удивительную трансформацию интеллекта.</p>
+                        <div class="character-traits">
+                            <span>Искренность</span>
+                            <span>Любознательность</span>
+                            <span>Решительность</span>
+                        </div>
+                    </div>
+
+                    <div class="character-card glass-effect" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="character-image">
+                            <img src="https://images.unsplash.com/photo-1618861810083-590e3c10d6e6?q=80&w=1000" alt="Элджернон">
+                        </div>
+                        <h3>Элджернон</h3>
+                        <p>Лабораторная мышь, первопроходец эксперимента.</p>
+                        <div class="character-traits">
+                            <span>Интеллект</span>
+                            <span>Символизм</span>
+                        </div>
+                    </div>
+
+                    <div class="character-card glass-effect" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="character-image">
+                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1000" alt="Доктор Немур">
+                        </div>
+                        <h3>Доктор Немур</h3>
+                        <p>Амбициозный ученый, руководитель эксперимента.</p>
+                        <div class="character-traits">
+                            <span>Амбиции</span>
+                            <span>Профессионализм</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="mind-map" class="mind-map-section">
             <div class="container">
                 <h2 class="section-title" data-aos="fade-up">Карта сознания</h2>
@@ -79,7 +190,32 @@
             </div>
         </section>
 
-        <!-- Новая секция: Интерактивные цитаты с 3D эффектом -->
+        <section id="lab" class="lab-section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Виртуальная лаборатория</h2>
+                <div class="lab-container glass-effect" data-aos="zoom-in">
+                    <div class="lab-element microscope">
+                        <div class="hologram-effect"></div>
+                        <h3>Исследование мозга</h3>
+                        <p>Интерактивная модель нейронных связей</p>
+                        <div class="lab-icon">🔬</div>
+                    </div>
+                    <div class="lab-element brain-scan">
+                        <div class="hologram-effect"></div>
+                        <h3>Сканирование мозга</h3>
+                        <p>Визуализация изменений в структуре мозга</p>
+                        <div class="lab-icon">🧠</div>
+                    </div>
+                    <div class="lab-element data-analysis">
+                        <div class="hologram-effect"></div>
+                        <h3>Анализ данных</h3>
+                        <p>Графики развития интеллекта</p>
+                        <div class="lab-icon">📊</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="quotes" class="quotes-section">
             <div class="container">
                 <h2 class="section-title" data-aos="fade-up">Глубокие мысли</h2>
@@ -92,53 +228,19 @@
                             <p>Эта цитата отражает главную идею произведения о важности баланса между разумом и чувствами.</p>
                         </div>
                     </div>
-                    <!-- Добавьте больше карточек с цитатами -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Новая секция: Интерактивная лаборатория -->
-        <section id="lab" class="lab-section">
-            <div class="container">
-                <h2 class="section-title" data-aos="fade-up">Виртуальная лаборатория</h2>
-                <div class="lab-container glass-effect" data-aos="zoom-in">
-                    <div class="lab-element microscope">
-                        <div class="hologram-effect"></div>
-                        <h3>Исследование мозга</h3>
-                        <p>Интерактивная модель нейронных связей</p>
-                    </div>
-                    <div class="lab-element brain-scan">
-                        <div class="hologram-effect"></div>
-                        <h3>Сканирование мозга</h3>
-                        <p>Визуализация изменений в структуре мозга</p>
-                    </div>
-                    <div class="lab-element data-analysis">
-                        <div class="hologram-effect"></div>
-                        <h3>Анализ данных</h3>
-                        <p>Графики развития интеллекта</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Новая секция: Интерактивный тест -->
-        <section id="test" class="test-section">
-            <div class="container">
-                <h2 class="section-title" data-aos="fade-up">Проверь себя</h2>
-                <div class="test-container glass-effect" data-aos="fade-up">
-                    <div class="test-intro">
-                        <h3>Тест Роршаха</h3>
-                        <p>Интерактивная версия психологического теста</p>
-                    </div>
-                    <div class="test-content">
-                        <!-- Интерактивные элементы теста -->
+                    <div class="quote-card glass-effect" data-aos="flip-right">
+                        <div class="quote-front">
+                            <p>"Я понял, что интеллект без способности к эмоциональному восприятию может оказаться столь же неполноценным и беспомощным, как интеллект, скованный эмоциями."</p>
+                        </div>
+                        <div class="quote-back">
+                            <p>Размышление о важности эмоционального интеллекта и его связи с рациональным мышлением.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Обновленный футер -->
     <footer class="footer glass-effect">
         <div class="container">
             <div class="footer-grid">
@@ -174,5 +276,8 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
