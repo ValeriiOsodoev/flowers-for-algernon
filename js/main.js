@@ -1,73 +1,67 @@
-// Инициализация AOS
-AOS.init({
-    duration: 1000,
-    once: true
-});
+// Добавьте этот код к существующему JavaScript файлу
 
-// Кастомный курсор
-const cursor = document.querySelector('.cursor');
-const cursorFollower = document.querySelector('.cursor-follower');
-
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    
-    cursorFollower.style.left = e.clientX + 'px';
-    cursorFollower.style.top = e.clientY + 'px';
-});
-
-// Эффект наведения на ссылки
-document.querySelectorAll('a, button').forEach(link => {
-    link.addEventListener('mouseenter', () => {
-        cursorFollower.style.transform = 'scale(1.5)';
-        cursor.style.transform = 'scale(0.5)';
+// Интерактивная карта сознания
+document.querySelectorAll('.node').forEach(node => {
+    node.addEventListener('mouseenter', () => {
+        node.style.transform = 'scale(1.1)';
+        node.style.boxShadow = '0 0 20px var(--accent-color)';
     });
 
-    link.addEventListener('mouseleave', () => {
-        cursorFollower.style.transform = 'scale(1)';
-        cursor.style.transform = 'scale(1)';
+    node.addEventListener('mouseleave', () => {
+        node.style.transform = 'scale(1)';
+        node.style.boxShadow = 'none';
     });
 });
 
-// Переключатель темы
-const themeToggle = document.querySelector('.theme-toggle');
-themeToggle.addEventListener('click', () => {
-    document.body.dataset.theme = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
-});
-
-// Параллакс эффект для фона героя
-document.addEventListener('mousemove', (e) => {
-    const heroBackground = document.querySelector('.hero-background');
-    const moveX = (e.clientX - window.innerWidth / 2) * 0.05;
-    const moveY = (e.clientY - window.innerHeight / 2) * 0.05;
-    
-    heroBackground.style.transform = `translate(${moveX}px, ${moveY}px)`;
-});
-
-// Плавная прокрутка
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
-
-// Анимация при скролле для карточек персонажей
-const observerOptions = {
-    threshold: 0.5
-};
-
-const observer = new IntersectionObserver((entries) => {
+// Анимация временной линии
+const timelineItems = document.querySelectorAll('.timeline-item');
+const timelineObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.transform = 'translateX(0)';
         }
     });
-}, observerOptions);
+}, { threshold: 0.5 });
 
-document.querySelectorAll('.character-card').forEach(card => {
-    observer.observe(card);
+timelineItems.forEach(item => {
+    timelineObserver.observe(item);
+});
+
+// Лабораторные элементы
+document.querySelectorAll('.lab-element').forEach(element => {
+    element.addEventListener('mouseenter', () => {
+        element.querySelector('.hologram-effect').style.opacity = '1';
+    });
+
+    element.addEventListener('mouseleave', () => {
+        element.querySelector('.hologram-effect').style.opacity = '0.5';
+    });
+});
+
+// 3D эффект для карточек с цитатами
+document.querySelectorAll('.quote-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const xRotation = ((y - rect.height / 2) / rect.height) * 20;
+        const yRotation = ((x - rect.width / 2) / rect.width) * 20;
+        
+        card.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+    });
+});
+
+// Добавление интерактивных элементов при скролле
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    document.querySelectorAll('.parallax').forEach(element => {
+        const speed = element.dataset.speed;
+        element.style.transform = `translateY(${scrolled * speed}px)`;
+    });
 });
